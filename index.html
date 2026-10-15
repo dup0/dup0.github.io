@@ -8,80 +8,127 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a110d;--s:#101a14;--line:#22342a;--grid:rgba(34,52,42,.55);--g:#6fd16b;--g2:#3f8f3d;--ink:#08140b;--tx:#edf3ee;--mu:#93a89a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+:root{--bg:#060c08;--s:rgba(16,26,20,.55);--line:rgba(111,209,107,.18);--grid:rgba(34,52,42,.6);--g:#6fd16b;--g2:#2fd4b0;--ink:#06130a;--tx:#edf3ee;--mu:#93a89a;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit;margin:0}
 html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg);scroll-behavior:smooth}
-body{background:var(--bg);color:var(--tx);font:400 1rem/1.65 Manrope,"Segoe UI",system-ui,sans-serif;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(50% 40% at 80% 0,rgba(111,209,107,.14),transparent 70%),linear-gradient(var(--grid) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/48px 48px;-webkit-mask:linear-gradient(#000 25%,transparent 80%);mask:linear-gradient(#000 25%,transparent 80%)}
+body{color:var(--tx);font:400 1rem/1.65 Manrope,"Segoe UI",system-ui,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/48px 48px;-webkit-mask:linear-gradient(#000 20%,transparent 85%);mask:linear-gradient(#000 20%,transparent 85%);animation:gm 6s linear infinite}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(380px circle at var(--mx,70%) var(--my,-10%),rgba(111,209,107,.13),transparent 70%)}
+.orb{position:fixed;z-index:-1;width:60vmax;height:60vmax;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(111,209,107,.2),transparent 62%);animation:dr 18s ease-in-out infinite alternate}
+.o1{top:-30vmax;right:-20vmax}
+.o2{bottom:-34vmax;left:-26vmax;background:radial-gradient(circle,rgba(47,212,176,.16),transparent 62%);animation-duration:24s}
+.bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:20;background:linear-gradient(90deg,var(--g),var(--g2));transform:scaleX(0);transform-origin:0 50%}
 [hidden]{display:none!important}
 .wrap{width:min(1040px,100% - 2.5rem);margin-inline:auto}
 svg.i{width:1.2em;height:1.2em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}
 
-.nav{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding:.6rem .6rem .6rem 1rem;border:1px solid var(--line);border-radius:18px;background:var(--s);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .brand{display:flex;align-items:center;gap:.6rem;color:var(--tx);text-decoration:none;font-weight:800;letter-spacing:-.01em}
-.brand svg{width:28px;height:28px}
+.brand svg{width:28px;height:28px;animation:fl 4s ease-in-out infinite}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.8rem 1.5rem;font:700 .95rem/1 Manrope,"Segoe UI",sans-serif;color:var(--ink);background:var(--g);border:1px solid var(--g);cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 var(--g2);transition:transform .12s,box-shadow .12s,background .12s}
-.btn:hover{background:#8be487}
-.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--g2)}
-.btn.sm{padding:.55rem 1.1rem;font-size:.85rem;box-shadow:3px 3px 0 var(--g2)}
-.btn.ghost{background:transparent;color:var(--tx);border-color:var(--line);box-shadow:none}
-.btn.ghost:hover{border-color:var(--g);background:rgba(111,209,107,.08)}
-.btn.ghost:active{transform:none}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:.9rem 1.6rem;font:700 .95rem/1 Manrope,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--g),var(--g2));border:0;border-radius:14px;cursor:pointer;text-decoration:none;box-shadow:0 8px 28px -8px rgba(111,209,107,.7);transition:transform .25s,box-shadow .25s}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);transform:translateX(-130%);animation:sn 3.6s ease-in-out infinite}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 34px -8px rgba(111,209,107,.9)}
+.btn:active{transform:scale(.96)}
+.btn.sm{padding:.65rem 1.2rem;font-size:.85rem;border-radius:12px}
+.btn.ghost{background:rgba(255,255,255,.04);color:var(--tx);border:1px solid var(--line);box-shadow:none;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.btn.ghost::after{display:none}
+.btn.ghost:hover{border-color:var(--g);background:rgba(111,209,107,.1)}
 
+.in{animation:up .9s var(--d,0s) cubic-bezier(.2,.7,.2,1) backwards}
 .hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:3rem;align-items:center;padding:clamp(2.5rem,7vw,5rem) 0 1rem}
-h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:800;letter-spacing:-.04em;line-height:1}
+h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(100deg,#fff 0,#8be487 30%,#2fd4b0 55%,#8be487 75%,#fff 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+h1.in{animation:up .9s var(--d) cubic-bezier(.2,.7,.2,1) backwards,sh 6s linear infinite}
 .lead{max-width:30rem;margin:1.3rem 0 1.9rem;color:var(--mu);font-size:1.08rem}
 .cta{display:flex;flex-wrap:wrap;gap:1rem}
-.srv{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.7rem;padding:.2rem .6rem;border:1px solid var(--line);color:var(--mu);font-size:.7rem;line-height:1.5;cursor:default;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.srv{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.7rem;padding:.3rem .8rem;border:1px solid var(--line);border-radius:99px;background:var(--s);color:var(--mu);font-size:.72rem;line-height:1.5;cursor:default;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .srv svg{width:11px;height:11px}
 .srv b{font-weight:600;color:var(--tx)}
 .srv span::after{content:attr(data-t)}
 
-.frame{position:relative;border:1px solid var(--line);background:radial-gradient(60% 60% at 50% 45%,rgba(111,209,107,.14),transparent 70%),linear-gradient(var(--grid) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/32px 32px,var(--s)}
-.frame::before,.frame::after{content:"";position:absolute;width:20px;height:20px;border:2px solid var(--g);pointer-events:none;z-index:2}
-.frame::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
-.frame::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
-.scene{aspect-ratio:10/9}
+.frame{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:radial-gradient(60% 60% at 50% 45%,rgba(111,209,107,.16),transparent 70%),linear-gradient(var(--grid) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/32px 32px,rgba(16,26,20,.8)}
+.frame::before{content:"";position:absolute;inset:0;z-index:2;border-radius:inherit;padding:1.5px;pointer-events:none;background:conic-gradient(from var(--a),transparent 55%,var(--g),var(--g2),transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rot 5s linear infinite}
+.scene{aspect-ratio:10/9;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;will-change:transform}
 .scene svg{position:absolute;inset:0;width:100%;height:100%}
 .t{font:600 12px Manrope,sans-serif;fill:var(--mu);text-anchor:middle}
+.tg{font:800 22px Manrope,sans-serif;fill:var(--g);text-anchor:middle;animation:tg 6s ease-in-out infinite}
 .fl{animation:fl 4s ease-in-out infinite}
+.fl.b{animation-delay:-2s}
+.pt{animation:pt 5s ease-in-out infinite alternate}
+.pt:nth-child(2n){animation-duration:7s;animation-delay:-2s}
+.or,.rg,.pop{transform-box:fill-box;transform-origin:center}
+.or{animation:sp 40s linear infinite}
+.or.r{animation-direction:reverse;animation-duration:28s}
+.rg{animation:rg 6s ease-out infinite}
+.pop{animation:pop 6s ease-in-out infinite}
+.df{animation:df 1s linear infinite}
+
+.mq{margin-top:3.5rem;overflow:hidden;border-block:1px solid var(--line);-webkit-mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq div{display:flex;width:max-content;animation:mq 45s linear infinite}
+.mq span{display:inline-flex;align-items:center;gap:.7rem;padding:.85rem 1.8rem;font-size:1.15rem;font-weight:800;letter-spacing:-.01em;color:var(--mu);white-space:nowrap}
+.mq img{width:28px;height:28px;border-radius:6px;image-rendering:pixelated;background:rgba(255,255,255,.06);flex:none}
+.mq span:nth-child(even){color:var(--g)}
 
 section{padding:4rem 0 0}
 .sh{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.4rem}
-.sh::after{content:"";flex:1;height:1px;background:var(--line)}
+.sh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--g),transparent)}
 h2{font-size:1.4rem;font-weight:800;letter-spacing:-.01em}
-.about{max-width:40rem;padding-left:1.2rem;border-left:3px solid var(--g);color:var(--mu);font-size:1.05rem}
-.about strong{color:var(--tx);font-weight:600}
+.about{max-width:40rem;padding:1.2rem 1.4rem;border:1px solid var(--line);border-left:3px solid var(--g);border-radius:0 18px 18px 0;background:var(--s);color:var(--mu);font-size:1.05rem}
+.about strong{color:var(--tx);font-weight:600;background:linear-gradient(var(--g),var(--g)) 0 100%/0 2px no-repeat;transition:background-size 1.2s .5s}
+.on .about strong,.about.on strong{background-size:100% 2px}
 
-.video{aspect-ratio:16/9;overflow:hidden}
+.video{aspect-ratio:16/9}
 .video iframe,.video video{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
-.play{position:absolute;inset:0;margin:auto;width:76px;height:76px;display:grid;place-items:center;background:var(--g);border:0;cursor:pointer;box-shadow:5px 5px 0 var(--g2)}
-.play::after{content:"";position:absolute;inset:-12px;border:2px solid var(--g);animation:ring 2.4s ease-out infinite}
+.play{position:absolute;inset:0;margin:auto;width:76px;height:76px;display:grid;place-items:center;background:linear-gradient(135deg,var(--g),var(--g2));border:0;border-radius:50%;cursor:pointer;box-shadow:0 0 40px rgba(111,209,107,.5)}
+.play::before,.play::after{content:"";position:absolute;inset:0;border:2px solid var(--g);border-radius:50%;animation:ring 2.4s ease-out infinite}
+.play::after{animation-delay:1.2s}
 .play svg{width:30px;fill:var(--ink);transform:translateX(2px)}
 .vtxt{position:absolute;inset-inline:0;bottom:1.1rem;text-align:center;color:var(--mu);font-size:.85rem}
 .alt{display:inline-block;margin-top:.9rem;color:var(--g);font-size:.9rem}
 
-ol{list-style:none;padding:0;display:grid;gap:2.4rem 2rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-li{position:relative;padding-top:2.1rem;border-top:1px solid var(--line)}
-li b{position:absolute;top:-1.1rem;left:0;display:grid;place-items:center;width:2.2rem;height:2.2rem;background:var(--g);color:var(--ink);font-weight:800}
-li svg{width:28px;height:28px;color:var(--g);margin-bottom:.8rem}
-h3{font-size:1.08rem;font-weight:800}
-li p{color:var(--mu);font-size:.94rem}
+ol{list-style:none;padding:0;display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+li{position:relative;overflow:hidden;padding:1.6rem 1.5rem;border:1px solid var(--line);border-radius:20px;background:var(--s);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .3s,border-color .3s}
+li::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;background:radial-gradient(220px circle at var(--x,50%) var(--y,50%),rgba(111,209,107,.2),transparent)}
+li:hover{transform:translateY(-6px);border-color:var(--g)}
+li:hover::before{opacity:1}
+li b{position:absolute;top:.8rem;right:1.2rem;font-size:3rem;line-height:1;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(111,209,107,.45)}
+li svg{position:relative;width:30px;height:30px;color:var(--g);margin-bottom:.9rem;transition:transform .4s}
+li:hover svg{transform:scale(1.25) rotate(-8deg)}
+h3{position:relative;font-size:1.08rem;font-weight:800}
+li p{position:relative;color:var(--mu);font-size:.94rem}
+li code{padding:.1rem .45rem;border:1px solid var(--line);border-radius:8px;background:rgba(111,209,107,.12);color:var(--g);font:800 .95em Manrope,"Segoe UI",monospace}
 
 footer{margin-top:4.5rem;padding:1.5rem 0 2.2rem;border-top:1px solid var(--line);color:var(--mu);font-size:.78rem}
 footer p{max-width:44rem}
-.toast{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--s);color:var(--tx);padding:.65rem 1.2rem;font-size:.9rem;opacity:0;pointer-events:none;transition:.25s;z-index:9;border:1px solid var(--g)}
+.toast{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--s);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--tx);padding:.7rem 1.3rem;border-radius:14px;font-size:.9rem;opacity:0;pointer-events:none;transition:.3s;z-index:30;border:1px solid var(--g)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
-@keyframes ring{from{transform:scale(.85);opacity:.9}to{transform:scale(1.45);opacity:0}}
+.js .rv{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity .9s var(--d,0s),transform .9s var(--d,0s) cubic-bezier(.2,.7,.2,1),filter .9s var(--d,0s)}
+.js .rv.on{opacity:1;transform:none;filter:none}
+
+@keyframes up{from{opacity:0;transform:translateY(28px);filter:blur(8px)}}
+@keyframes sh{to{background-position:-250% 0}}
+@keyframes sn{45%,100%{transform:translateX(130%)}}
+@keyframes rot{to{--a:360deg}}
+@keyframes gm{to{background-position:0 48px,48px 0}}
+@keyframes dr{to{transform:translate(-8vmax,8vmax) scale(1.15)}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes ring{from{transform:scale(.9);opacity:.9}to{transform:scale(1.7);opacity:0}}
 @keyframes fl{50%{transform:translateY(-9px)}}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes pt{to{transform:translateY(-16px);opacity:.15}}
+@keyframes df{to{stroke-dashoffset:-14}}
+@keyframes pop{0%,18%{opacity:0;transform:translateY(-30px) scale(.88)}30%,88%{opacity:1;transform:none}96%,100%{opacity:0;transform:translateY(-30px) scale(.88)}}
+@keyframes rg{0%,26%{opacity:0;transform:scale(.4)}30%{opacity:.9}55%,100%{opacity:0;transform:scale(1.6)}}
+@keyframes tg{0%,28%{opacity:0;transform:translateY(8px)}36%,82%{opacity:1;transform:none}92%,100%{opacity:0}}
 @media (max-width:820px){.hero{grid-template-columns:1fr;gap:2.5rem}.scene{max-width:440px}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
+<i class="orb o1"></i><i class="orb o2"></i><div class="bar" id="bar"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <g id="gb">
 <path d="M-70 0V80L0 115V35z" fill="#7a4e32"/>
@@ -97,7 +144,7 @@ footer p{max-width:44rem}
 </defs></svg>
 
 <div class="wrap">
-<header class="nav">
+<header class="nav in">
   <a class="brand" href="#top"><svg viewBox="-80 -40 160 160" aria-hidden="true"><use href="#gb"/></svg>DHG dupe</a>
   <a class="btn sm" href="#top" data-dl>Download</a>
 </header>
@@ -105,57 +152,65 @@ footer p{max-width:44rem}
 <main id="top">
   <div class="hero">
     <div>
-      <h1>DHG dupe</h1>
-      <p class="lead">A duplication mod for the TrexMine server. Download it, place it in your mods folder, and join.</p>
-      <div class="cta">
+      <h1 class="in" style="--d:.15s">DHG dupe</h1>
+      <p class="lead in" style="--d:.3s">A duplication mod for the TrexMine server. Download it, place it in your mods folder, and join.</p>
+      <div class="cta in" style="--d:.45s">
         <a class="btn" href="#top" data-dl><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-5-5m5 5 5-5M5 20h14"/></svg>Download mod</a>
         <a class="btn ghost" href="#demo">Watch demo</a>
       </div>
-      <div class="srv" id="srv" aria-label="Server address">
+      <div class="srv in" id="srv" style="--d:.6s" aria-label="Server address">
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
         <b>Server</b><span id="sv"></span>
       </div>
     </div>
 
-    <div class="frame scene" aria-hidden="true">
+    <div class="frame scene in" style="--d:.35s" aria-hidden="true">
       <svg viewBox="0 0 400 360">
-        <g fill="#6fd16b" opacity=".4"><rect x="40" y="52" width="6" height="6"/><rect x="338" y="74" width="6" height="6"/><rect x="62" y="300" width="6" height="6"/><rect x="352" y="290" width="6" height="6"/><rect x="330" y="36" width="4" height="4"/><rect x="24" y="180" width="4" height="4"/></g>
-        <path d="M199 125C250 125 275 140 275 168" fill="none" stroke="#6fd16b" stroke-width="1.6" stroke-dasharray="3 4"/>
+        <circle class="or" cx="200" cy="180" r="168" fill="none" stroke="#6fd16b" stroke-opacity=".22" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <circle class="or r" cx="200" cy="180" r="120" fill="none" stroke="#2fd4b0" stroke-opacity=".2" stroke-dasharray="5 12"/>
+        <g fill="#6fd16b" opacity=".45"><rect class="pt" x="40" y="52" width="6" height="6"/><rect class="pt" x="338" y="74" width="6" height="6"/><rect class="pt" x="62" y="300" width="6" height="6"/><rect class="pt" x="352" y="290" width="6" height="6"/><rect class="pt" x="330" y="36" width="4" height="4"/><rect class="pt" x="24" y="180" width="4" height="4"/></g>
+        <path class="df" d="M199 125C250 125 275 140 275 168" fill="none" stroke="#6fd16b" stroke-width="1.6" stroke-dasharray="3 4"/>
         <path d="M269 162l6 9 6-9" fill="none" stroke="#6fd16b" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <g transform="translate(125 125)"><use href="#gb"/></g>
-        <g transform="translate(275 215)"><g class="fl"><use href="#gg"/></g></g>
+        <g transform="translate(125 125)"><g class="fl b"><use href="#gb"/></g></g>
+        <ellipse class="rg" cx="275" cy="262" rx="72" ry="30" fill="none" stroke="#6fd16b" stroke-width="2"/>
+        <g transform="translate(275 215)"><g class="fl"><use href="#gg"/><g class="pop"><use href="#gb"/></g></g></g>
+        <text class="tg" x="350" y="170">+1</text>
         <text class="t" x="125" y="268">Original</text>
         <text class="t" x="275" y="350">Copy</text>
       </svg>
     </div>
   </div>
 
+  <div class="mq" aria-hidden="true"><div id="mqi"></div></div>
+
   <section id="about">
-    <div class="sh"><h2>What is duping?</h2></div>
-    <p class="about"><strong>Duping is the duplication of in-game items</strong>: one becomes two. DHG dupe is a mod made for this purpose on the TrexMine server.</p>
+    <div class="sh rv"><h2>What is duping?</h2></div>
+    <p class="about rv" style="--d:.1s"><strong>Duping is the duplication of in-game items</strong>: one becomes two. DHG dupe is a mod made for this purpose on the TrexMine server.</p>
   </section>
 
   <section id="demo">
-    <div class="sh"><h2>Demo video</h2></div>
-    <div class="frame video" id="video">
+    <div class="sh rv"><h2>Demo video</h2></div>
+    <div class="frame video rv" id="video" style="--d:.1s">
       <button class="play" id="play" type="button" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
       <div class="vtxt" id="vtxt">Video coming soon</div>
     </div>
-    <a class="alt" id="alt" target="_blank" rel="noopener" hidden>Open video in a new tab</a>
   </section>
 
   <section id="install">
-    <div class="sh"><h2>Installation</h2></div>
+    <div class="sh rv"><h2>Installation &amp; usage</h2></div>
     <ol>
-      <li><b>1</b>
+      <li class="rv"><b>1</b>
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-5-5m5 5 5-5M5 20h14"/></svg>
         <h3>Download</h3><p>Get the mod file using the download button.</p></li>
-      <li><b>2</b>
+      <li class="rv" style="--d:.15s"><b>2</b>
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
         <h3>Install</h3><p>Copy the file into your Minecraft mods folder.</p></li>
-      <li><b>3</b>
+      <li class="rv" style="--d:.3s"><b>3</b>
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg>
-        <h3>Join</h3><p>Launch the game and connect to the TrexMine server.</p></li>
+        <h3>Join</h3><p>Launch the game and connect to the server.</p></li>
+      <li class="rv" style="--d:.45s"><b>4</b>
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l6 6-6 6M12 18h8"/></svg>
+        <h3>Dupe</h3><p>Hold the item in your hand and type <code>/dupe</code> in chat.</p></li>
     </ol>
   </section>
 </main>
@@ -172,6 +227,7 @@ const CFG = { video: "https://yourimageshare.com/ib/cAOyTLl5GK.mp4", download: "
 
 
 const $ = s => document.querySelector(s);
+document.documentElement.classList.add("js");
 let tt;
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("on"),2200)}
 
@@ -184,7 +240,7 @@ document.querySelectorAll("[data-dl]").forEach(a=>{
 $("#sv").dataset.t=["play","trexmine","com"].join(".");
 ["copy","cut","contextmenu","dragstart","selectstart"].forEach(ev=>$("#srv").addEventListener(ev,e=>e.preventDefault()));
 
-if(CFG.video){$("#vtxt").hidden=true;$("#alt").href=CFG.video;$("#alt").hidden=false}
+if(CFG.video)$("#vtxt").hidden=true;
 function startVideo(){
   const v=CFG.video;
   if(!v)return toast("Video has not been added yet");
@@ -196,6 +252,33 @@ function startVideo(){
 }
 $("#play").addEventListener("click",startVideo);
 if(CFG.video)startVideo();
+
+// Marquee
+const SERVERS=[
+  {n:"MC.GameUP.iR",id:120},
+  {n:"Hub.TrexMine.Com",id:10},
+  {n:"EternullMC.Net",id:588},
+  {n:"Asia.Noxel.Fun",id:534}
+];
+$("#mqi").innerHTML=SERVERS.map(s=>'<span><img src="https://mctracker.ir/api/servers/'+s.id+'/favicon" alt="" width="28" height="28" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'">'+s.n+'</span>').join("").repeat(6);
+
+// Scroll reveal + progress bar
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(e=>io.observe(e));
+const bar=$("#bar");
+function prog(){const m=document.documentElement.scrollHeight-innerHeight;bar.style.transform="scaleX("+(m>0?scrollY/m:0)+")"}
+addEventListener("scroll",prog,{passive:true});prog();
+
+// Pointer effects: cursor glow, 3D tilt on the scene, card spotlight
+if(matchMedia("(hover:hover)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches){
+  const sc=$(".scene"),st=document.body.style;
+  addEventListener("pointermove",e=>{
+    st.setProperty("--mx",e.clientX+"px");st.setProperty("--my",e.clientY+"px");
+    const r=sc.getBoundingClientRect(),x=Math.max(-1,Math.min(1,(e.clientX-r.left-r.width/2)/innerWidth*2)),y=Math.max(-1,Math.min(1,(e.clientY-r.top-r.height/2)/innerHeight*2));
+    sc.style.setProperty("--rx",(-y*9)+"deg");sc.style.setProperty("--ry",(x*12)+"deg");
+  },{passive:true});
+  document.querySelectorAll("li").forEach(l=>l.addEventListener("pointermove",e=>{const r=l.getBoundingClientRect();l.style.setProperty("--x",e.clientX-r.left+"px");l.style.setProperty("--y",e.clientY-r.top+"px")}));
+}
 
 function scrollToDemoOnLoad(){
   if(window.matchMedia("(prefers-reduced-motion: reduce)").matches||window.location.hash||window.scrollY>0)return;
@@ -210,7 +293,7 @@ function scrollToDemoOnLoad(){
     cancelAnimationFrame(frame);
     events.forEach(event=>window.removeEventListener(event,cancel));
   }
-  function cancel(){cancelled=true;cleanup()}
+  function cancel(){cancelled=true;document.documentElement.style.scrollBehavior="";cleanup()}
   events.forEach(event=>window.addEventListener(event,cancel,{passive:true}));
   delay=setTimeout(()=>{
     if(cancelled)return;
@@ -218,19 +301,23 @@ function scrollToDemoOnLoad(){
     const target=Math.max(0,Math.min(demo.getBoundingClientRect().top+start,document.documentElement.scrollHeight-window.innerHeight));
     if(target<=start){cleanup();return}
     const started=performance.now();
+    const root=document.documentElement;
+    root.style.scrollBehavior="auto";
     function animate(now){
-      if(cancelled)return;
-      const progress=Math.min((now-started)/3500,1);
+      if(cancelled){root.style.scrollBehavior="";return}
+      const progress=Math.min((now-started)/5000,1);
       const eased=progress*progress*(3-2*progress);
-      window.scrollTo({top:start+(target-start)*eased,behavior:"instant"});
+      window.scrollTo(0,start+(target-start)*eased);
       if(progress<1)frame=requestAnimationFrame(animate);
-      else cleanup();
+      else{root.style.scrollBehavior="";cleanup()}
     }
     frame=requestAnimationFrame(animate);
   },700);
 }
-if(document.readyState==="complete")scrollToDemoOnLoad();
-else window.addEventListener("load",scrollToDemoOnLoad,{once:true});
+let scrolled=false;
+function startAutoScroll(){if(scrolled)return;scrolled=true;scrollToDemoOnLoad()}
+if(document.readyState==="complete")startAutoScroll();
+else{window.addEventListener("load",startAutoScroll,{once:true});setTimeout(startAutoScroll,2500)}
 </script>
 </body>
 </html>
