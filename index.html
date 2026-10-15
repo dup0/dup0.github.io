@@ -42,6 +42,9 @@ a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:3px}
 h1{font-size:clamp(3rem,9vw,5.6rem);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(100deg,#fff 0,#8be487 30%,#2fd4b0 55%,#8be487 75%,#fff 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 h1.in{animation:up .9s var(--d) cubic-bezier(.2,.7,.2,1) backwards,sh 6s linear infinite}
 .lead{max-width:30rem;margin:1.3rem 0 1.9rem;color:var(--mu);font-size:1.08rem}
+.ver{display:inline-flex;align-items:center;gap:.6rem;margin:0 0 1.6rem;padding:.55rem 1.1rem .55rem .6rem;border:1px solid var(--g);border-radius:99px;background:rgba(111,209,107,.1);font-weight:600;font-size:.95rem;color:var(--mu);box-shadow:0 0 28px -6px rgba(111,209,107,.55);animation:vg 3s ease-in-out infinite}
+.ver b{padding:.3rem .8rem;border-radius:99px;background:linear-gradient(135deg,var(--g),var(--g2));color:var(--ink);font-weight:800;font-size:1.05rem;letter-spacing:.01em}
+@keyframes vg{50%{box-shadow:0 0 40px -2px rgba(111,209,107,.85)}}
 .cta{display:flex;flex-wrap:wrap;gap:1rem}
 .srv{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.7rem;padding:.3rem .8rem;border:1px solid var(--line);border-radius:99px;background:var(--s);color:var(--mu);font-size:.72rem;line-height:1.5;cursor:default;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .srv svg{width:11px;height:11px}
@@ -153,7 +156,8 @@ footer p{max-width:44rem}
   <div class="hero">
     <div>
       <h1 class="in" style="--d:.15s">DHG dupe</h1>
-      <p class="lead in" style="--d:.3s">A duplication mod for the TrexMine server. Download it, place it in your mods folder, and join.</p>
+      <p class="lead in" style="--d:.3s">A duplication mod for the TrexMine server, made for Minecraft <strong style="color:var(--g)">1.21.11</strong>. Download it, place it in your mods folder, and join.</p>
+      <div class="ver in" style="--d:.38s"><b>1.21.11</b>Minecraft version required</div><br>
       <div class="cta in" style="--d:.45s">
         <a class="btn" href="#top" data-dl><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-5-5m5 5 5-5M5 20h14"/></svg>Download mod</a>
         <a class="btn ghost" href="#demo">Watch demo</a>
@@ -201,10 +205,10 @@ footer p{max-width:44rem}
     <ol>
       <li class="rv"><b>1</b>
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-5-5m5 5 5-5M5 20h14"/></svg>
-        <h3>Download</h3><p>Get the mod file using the download button.</p></li>
+        <h3>Download</h3><p>Get the mod file (version <code>1.21.11</code>) using the download button.</p></li>
       <li class="rv" style="--d:.15s"><b>2</b>
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-        <h3>Install</h3><p>Copy the file into your Minecraft mods folder.</p></li>
+        <h3>Install</h3><p>Copy the file into the mods folder of your Minecraft <code>1.21.11</code>.</p></li>
       <li class="rv" style="--d:.3s"><b>3</b>
         <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v11H3zM8 20h8M12 16v4"/></svg>
         <h3>Join</h3><p>Launch the game and connect to the server.</p></li>
@@ -255,6 +259,7 @@ if(CFG.video)startVideo();
 
 // Marquee
 const SERVERS=[
+  {n:"Play.GunMax.Org",id:112},
   {n:"MC.GameUP.iR",id:120},
   {n:"Hub.TrexMine.Com",id:10},
   {n:"EternullMC.Net",id:588},
